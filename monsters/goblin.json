@@ -1,0 +1,11 @@
+{
+  "name": "Goblin",
+  "Parry": 3,
+  "Toughness": 4,
+  "Shooting": "d4",
+  "Fight": "d5",
+  "Attacks": {
+    "Stab": "1d4+2",
+    "Throw Rock": "1d6"
+  }
+}
