@@ -25,3 +25,4 @@ def load_characters_from_folder(folder_path: str) -> List[Character]:
             file_path = os.path.join(folder_path, file_name)
             characters.append(Character.from_json(file_path))
     return characters
+
