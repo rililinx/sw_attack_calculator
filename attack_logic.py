@@ -87,22 +87,32 @@ def roll_aim(skill_notation):
     print (f"Aim roll is {aim_result}")
     return aim_result
 
+
 def determine_attack_outcome(final_damage, selected_character):
-    toughness =  selected_character.toughness
+    toughness = selected_character.toughness
     if toughness is None:
-        self.result_label.config(text="Error: Character's toughness not found.")
-        return
+        print("Error: Character's toughness not found.")
+        return "Error: Character's toughness not found."
+
     print(f"Character toughness {toughness}, damage is {final_damage}")
     damage_diff = final_damage - toughness
 
     if damage_diff <= 0:
         outcome = "No effect on the character."
-    elif 0 < damage_diff < 4:
-        outcome = "Character shaken or receives 1 wound if already shaken."
-    elif 4 <= damage_diff < 8:
-        outcome = "Character shaken and receives +1 wound."
-    elif damage_diff >= 8:
-        outcome = "Character shaken and receives +2 wounds."
+    else:
+        # Calculate the number of wounds based on each full or partial increment of 4 points over toughness
+        full_increments = damage_diff // 4  # How many full increments of 4 are in the damage difference
+        partial_increment = 1 if damage_diff % 4 > 0 else 0  # Check for any partial increment
+        total_increments = full_increments + partial_increment
+
+        # Debug output to show calculation of increments
+        print(
+            f"Damage difference/4 exceeded {full_increments} times with a partial increment of {partial_increment}, total increments: {total_increments}")
+
+        if total_increments == 1:
+            outcome = "Character shaken or receives 1 wound if already shaken."
+        else:
+            outcome = f"Character shaken and receives +{total_increments} wounds."
 
     return outcome
 

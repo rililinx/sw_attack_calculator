@@ -2,7 +2,7 @@
   "name": "Ghost",
   "Parry": 4,
   "Toughness": 5,
-  "Shooting": "d4",
+  "Shooting": "5d4",
   "Fight": "d5",
   "Attacks": {
     "Bite": "3d6+1",
