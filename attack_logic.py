@@ -49,7 +49,8 @@ def calculate_damage(attack_value, selected_monster, selected_player, aim_result
 
 def simulate_dice_roll(A, X, C):
     """
-    Simulates rolling A dice of X sides each, and then adds or subtracts a constant C.
+    Simulates rolling A dice of X sides each for Savage Worlds, allowing for 'exploding' dice.
+    If a die rolls its maximum value, it is rolled again and added to the total.
 
     Parameters:
     - A: The number of dice to roll.
@@ -57,14 +58,24 @@ def simulate_dice_roll(A, X, C):
     - C: A constant to add (or subtract) to the total roll.
 
     Returns:
-    The total of the dice rolls plus the constant.
+    The total of the dice rolls plus the constant, including any additional rolls from 'exploding' dice.
     """
-    rolls = [random.randint(1, X) for _ in range(A)]  # Generate all rolls
-    total_roll = sum(rolls)
+    total_roll = 0
 
-    # Debug prints
-    # print(f"Dice rolls ({A}d{X}): {rolls}")
-    # print(f"Total before adding constant ({C}): {total_roll}")
+    for i in range(A):
+        roll = random.randint(1, X)
+        total_roll += roll
+        print(f"Roll #{i+1}: {roll}")  # Initial roll print
+
+        # Check if the roll is the maximum value, and continue rolling if so
+        while roll == X:
+            print(f"Dice exploded! Rolling again...")  # Debug print for explosion
+            roll = random.randint(1, X)
+            total_roll += roll
+            print(f"Exploded Roll: {roll}")  # Print the result of the exploded roll
+
+    # Debug prints to show the final total before adding the constant
+    print(f"Total before adding constant ({C}): {total_roll}")
 
     return total_roll + C
 

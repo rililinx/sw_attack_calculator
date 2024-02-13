@@ -26,7 +26,10 @@ share/python-wheels/
 *.egg
 .idea/
 MANIFEST
-
+players/kaoru.json
+players/rory.json
+players/protei.json
+players/geracio.json
 # PyInstaller
 #  Usually these files are written by a python script from a template
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
