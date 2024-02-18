@@ -19,6 +19,11 @@ class Application(tk.Tk):
 
         self.fighting_label = tk.Label(self, text="Fighting: N/A")
         self.fighting_label.pack(padx=10, pady=5)
+        # In the __init__ method of the Application class
+        self.ap_var = tk.StringVar()  # To hold the AP value
+        ttk.Label(self, text="Armor Piercing (AP):").pack(anchor=tk.W)
+        ap_entry = ttk.Entry(self, textvariable=self.ap_var)
+        ap_entry.pack(anchor=tk.W)
 
         self.monster_var = tk.StringVar()
         self.attack_var = tk.StringVar()
@@ -154,6 +159,15 @@ class Application(tk.Tk):
                 break
 
     def attack(self):
+        try:
+            ap_value = int(self.ap_var.get())
+            assert ap_value >= 0
+        except (ValueError, AssertionError):
+            self.result_text.set("Invalid AP value. Please enter a positive number or 0.")
+            return
+
+        # Continue with the attack logic...
+
         attack_type = self.attack_type_var.get()  # Melee or ranged
         defense_type = self.defense_var.get()  # None, cover, shield
 
@@ -186,7 +200,9 @@ class Application(tk.Tk):
         if attack_value:
             # Proceed to damage calculation if not missed
             final_damage=calculate_damage(attack_value, selected_monster, selected_player, aim_result)
-            outcome=determine_attack_outcome(final_damage,selected_player)
+            ap_value = int(self.ap_var.get() or 0)  # Get AP value, defaulting to 0 if not provided
+
+            outcome=determine_attack_outcome(final_damage,selected_player, ap_value)
             self.result_label.config(text=outcome)
 
 if __name__ == "__main__":

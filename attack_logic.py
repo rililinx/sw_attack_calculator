@@ -2,6 +2,8 @@ import random
 import re
 
 
+
+
 def parse_attack_value(attack_value):
     # Initialize default values
     A = 1  # Default multiplier
@@ -99,8 +101,13 @@ def roll_aim(skill_notation):
     return aim_result
 
 
-def determine_attack_outcome(final_damage, selected_character):
-    toughness = selected_character.toughness
+def determine_attack_outcome(final_damage, selected_character, ap_value):
+    print(selected_character.toughness)
+    toughness = selected_character.toughness - ap_value  # Apply AP to reduce toughness
+    # Ensure toughness doesn't go below some minimum, if applicable
+    toughness = max(toughness, 0)
+    print(f"Original Toughness: {selected_character.toughness}, AP: {ap_value}, Adjusted Toughness: {toughness}")
+
     if toughness is None:
         print("Error: Character's toughness not found.")
         return "Error: Character's toughness not found."
