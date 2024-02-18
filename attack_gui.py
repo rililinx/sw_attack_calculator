@@ -20,7 +20,7 @@ class Application(tk.Tk):
         self.fighting_label = tk.Label(self, text="Fighting: N/A")
         self.fighting_label.pack(padx=10, pady=5)
         # In the __init__ method of the Application class
-        self.ap_var = tk.StringVar()  # To hold the AP value
+        self.ap_var = tk.StringVar(value="0")
         ttk.Label(self, text="Armor Piercing (AP):").pack(anchor=tk.W)
         ap_entry = ttk.Entry(self, textvariable=self.ap_var)
         ap_entry.pack(anchor=tk.W)
