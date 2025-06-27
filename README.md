@@ -1,5 +1,8 @@
 # Savage Worlds Attack Calculator
 
+![Python tests](https://github.com/your-org/your-repo/actions/workflows/python-tests.yml/badge.svg)
+![Coverage](coverage.svg)
+
 The Savage Worlds Attack Calculator is a Python-based desktop application designed to simulate attack rolls in the Savage Worlds tabletop RPG. It allows users to select attackers (monsters), targets (players), and determine the outcomes of attacks based on Savage Worlds' unique combat mechanics, including "exploding" dice and Armor Piercing (AP) values.
 
 ![img.png](img.png)
@@ -44,6 +47,21 @@ To run the Savage Worlds Attack Calculator, follow these steps:
 ## Contributing
 
 Contributions to the Savage Worlds Attack Calculator are welcome. Please open an issue first to discuss what you would like to change or add.
+
+## Test Summary
+
+All unit tests run automatically via GitHub Actions.
+Coverage is calculated using the built-in `trace` module and updated via the
+`create_coverage_badge.py` script.
+
+| Logic area | Test count |
+| --- | --- |
+| `parse_attack_value` | 1 |
+| `simulate_dice_roll` | 2 |
+| `roll_damage` | 1 |
+| `roll_aim` | 1 |
+| `calculate_damage` | 2 |
+| `determine_attack_outcome` | 1 |
 
 ## License
 
