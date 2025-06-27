@@ -21,3 +21,6 @@ jobs:
       - name: Run tests
         run: |
           python -m pytest -q
+      - name: Generate coverage badge
+        run: |
+          python create_coverage_badge.py
